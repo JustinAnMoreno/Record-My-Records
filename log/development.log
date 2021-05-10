@@ -941,3 +941,55 @@ Processing by Api::V1::ArtistsController#index as HTML
 Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.5ms | Allocations: 732)
 
 
+Started GET "/api/v1/artists" for 127.0.0.1 at 2021-05-10 03:26:07 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArtistsController#index as HTML
+  [1m[36mArtist Load (0.8ms)[0m  [1m[34mSELECT "artists".* FROM "artists"[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:10:in `index'
+Completed 200 OK in 27ms (Views: 10.5ms | ActiveRecord: 7.0ms | Allocations: 7577)
+
+
+Started POST "/api/v1/artists/" for 127.0.0.1 at 2021-05-10 03:26:15 -0400
+Processing by Api::V1::ArtistsController#create as HTML
+  Parameters: {"artist"=>{"name"=>"Mommy Dearest"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:20:in `create'
+  [1m[36mArtist Create (0.7ms)[0m  [1m[32mINSERT INTO "artists" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Mommy Dearest"], ["created_at", "2021-05-10 07:26:15.342422"], ["updated_at", "2021-05-10 07:26:15.342422"]]
+  ↳ app/controllers/api/v1/artists_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (9.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:20:in `create'
+Completed 201 Created in 21ms (Views: 0.6ms | ActiveRecord: 9.9ms | Allocations: 3861)
+
+
+Started DELETE "/api/v1/artists/7" for 127.0.0.1 at 2021-05-10 03:26:18 -0400
+Processing by Api::V1::ArtistsController#destroy as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mArtist Load (0.4ms)[0m  [1m[34mSELECT "artists".* FROM "artists" WHERE "artists"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/artists_controller.rb:41:in `set_artist'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+  [1m[36mRecord Load (0.5ms)[0m  [1m[34mSELECT "records".* FROM "records" WHERE "records"."artist_id" = $1[0m  [["artist_id", 7]]
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+  [1m[36mArtist Destroy (0.9ms)[0m  [1m[31mDELETE FROM "artists" WHERE "artists"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+  [1m[36mTRANSACTION (35.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+Completed 204 No Content in 62ms (ActiveRecord: 39.8ms | Allocations: 7859)
+
+
+Started DELETE "/api/v1/artists/3" for 127.0.0.1 at 2021-05-10 03:26:19 -0400
+Processing by Api::V1::ArtistsController#destroy as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArtist Load (0.4ms)[0m  [1m[34mSELECT "artists".* FROM "artists" WHERE "artists"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/artists_controller.rb:41:in `set_artist'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+  [1m[36mRecord Load (0.5ms)[0m  [1m[34mSELECT "records".* FROM "records" WHERE "records"."artist_id" = $1[0m  [["artist_id", 3]]
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+  [1m[36mArtist Destroy (1.0ms)[0m  [1m[31mDELETE FROM "artists" WHERE "artists"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+  [1m[36mTRANSACTION (42.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/artists_controller.rb:36:in `destroy'
+Completed 204 No Content in 55ms (ActiveRecord: 44.3ms | Allocations: 3146)
+
+
